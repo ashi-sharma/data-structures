@@ -1,2 +1,2 @@
 # menu-driver-code_array
-contains all the operations performed on an array!!
+Contains all the operations performed on an array. Template has been used.
