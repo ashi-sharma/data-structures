@@ -65,7 +65,7 @@ T array<T>::del(int index){
 int main() {
 	array<char> arr;
 	arr.insert(0,'a');
-	arr.insert(1,'d');
+	arr.insert(1,'e');
 	arr.insert(2,'c');
 	arr.display();
 	cout<<arr.del(1)<<endl;
