@@ -24,3 +24,6 @@ int main() {
 	return 0;
 }
 
+//
+
+//************Minimum number of jumps to reach end of the array***************
