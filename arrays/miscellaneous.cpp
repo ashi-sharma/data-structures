@@ -24,6 +24,6 @@ int main() {
 	return 0;
 }
 
-//
+//************Minimise the maximum difference between the heights through increasing or decreasing them by k************
 
 //************Minimum number of jumps to reach end of the array***************
