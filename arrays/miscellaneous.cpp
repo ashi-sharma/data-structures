@@ -27,3 +27,20 @@ int main() {
 //************Minimise the maximum difference between the heights through increasing or decreasing them by k************
 
 //************Minimum number of jumps to reach end of the array***************
+
+int minJumps(int arr[], int n){
+    int minjump[n]={10000001};
+    cout<<minjump[1];
+    minjump[0]=0;
+    cout<<endl<<INT_MAX<<" "<<minjump[2];
+    for(int i=1;i<n;i++){
+        for(int j=0;j<i;j++){
+            if(i<=j+arr[j]){
+                minjump[i]=std::min(minjump[i],minjump[j]+1);
+            }
+        }
+    }
+    //if(minjump[n-1]==INT_MAX)
+    //    return -1;
+    return minjump[n-1];
+}
