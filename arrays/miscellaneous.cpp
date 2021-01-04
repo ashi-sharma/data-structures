@@ -1,5 +1,4 @@
 //***********Cyclically rotate an array by one************ 
-
 #include <iostream>
 using namespace std;
 
@@ -27,7 +26,6 @@ int main() {
 //************Minimise the maximum difference between the heights through increasing or decreasing them by k************
 
 //************Minimum number of jumps to reach end of the array***************
-
 int minJumps(int arr[], int n)
 {
     // jumps[n-1] will hold the result
@@ -52,3 +50,16 @@ int minJumps(int arr[], int n)
     }
     return jumps[n - 1];
 }
+
+//***********Merge two sorted array without using extra space*************
+void merge(int arr1[], int arr2[], int n, int m) {
+	    int i=n-1;
+	    int j=0;
+	    while(arr1[i]>arr2[j] && i>=0 && j<m){
+	        swap(arr1[i],arr2[j]);
+	        i--;
+	        j++;
+	    }
+	    sort(arr1,arr1+n);
+	    sort(arr2,arr2+m);
+	}
