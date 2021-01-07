@@ -25,8 +25,48 @@ void bubbleSort(int arr[],int n){
 	}
 }
 
+void merge(int arr[],int l,int mid,int h){
+	int i=l,j=mid+1,k=0;
+	int a[h+1];
+	while(i<=mid && j<=h){
+		if(arr[i]<arr[j]){
+			a[k++]=arr[i];
+			i++;
+		}
+		else if(arr[i]>arr[j]){
+			a[k++]=arr[j];
+			j++;
+		}
+	}
+	
+	while(i<=mid){
+		a[k++]=arr[i];
+		i++;
+	}
+	
+	
+	while(j<=h){
+		a[k++]=arr[j];
+		j++;
+	}
+	
+	for(int m=0;m<=h;m++)
+		arr[m]=a[m];
+}
+
+void mergesort(int arr[],int l,int h){
+	if(l<h){
+		int mid = (l+h)/2;
+		mergesort(arr,l,mid);
+		mergesort(arr,mid+1,h);
+		merge(arr,l,mid,h);
+	}
+}
+
 int main(){
 	int arr[5] = {4,6,2,1,3};
 	bubbleSort(arr,5);
+	mergesort(arr,0,4);
+	display(arr,5);
 	return 0;
 }
