@@ -65,3 +65,35 @@ void merge(int arr1[], int arr2[], int n, int m) {
 	}
 
 //*********count inversion of an array*********
+long long int merge(long long arr[],long long temp[],long long l,long long mid,long long h){
+    long long int count=0;
+    long long i=l,j=mid +1,k=l;
+    while(i<=mid && j<=h){
+        if(arr[i]>arr[j]){
+            temp[k++]=arr[j++];
+            count = count + mid-i+1;
+        }
+        else{
+            temp[k++]=arr[i++];
+        }
+    }
+    while(i<=mid)
+        temp[k++]=arr[i++];
+    while(j<=h)
+        temp[k++]=arr[j++];
+    for (i = l; i <= h; i++)
+        arr[i] = temp[i];
+    return count;
+}
+
+long long int mergesort(long long arr[],long long temp[],long long l,long long h){
+    long long int count = 0;
+    if(l<h){
+        long long mid=(l+h)/2;
+        count+=mergesort(arr,temp,l,mid);
+        count+=mergesort(arr,temp,mid+1,h);
+        count+=merge(arr,temp,l,mid,h);
+    }
+    return count;
+}
+
