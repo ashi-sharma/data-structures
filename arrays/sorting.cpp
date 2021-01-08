@@ -26,7 +26,7 @@ void bubbleSort(int arr[],int n){
 }
 
 void merge(int arr[],int l,int mid,int h){
-	int i=l,j=mid+1,k=0;
+	int i=l,j=mid+1,k=l;
 	int a[h+1];
 	while(i<=mid && j<=h){
 		if(arr[i]<arr[j]){
@@ -66,6 +66,7 @@ void mergesort(int arr[],int l,int h){
 int main(){
 	int arr[5] = {4,6,2,1,3};
 	bubbleSort(arr,5);
+	cout<<"merge sort:"<<endl;
 	mergesort(arr,0,4);
 	display(arr,5);
 	return 0;
