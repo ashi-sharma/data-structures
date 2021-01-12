@@ -97,3 +97,15 @@ long long int mergesort(long long arr[],long long temp[],long long l,long long h
     return count;
 }
 
+//maximum product subarray
+int maxProduct(int *arr, int n) {
+	    int maxprod=arr[0],Max=arr[0],Min=arr[0];
+	    for(int i=1;i<n;i++){
+	        if(arr[i]<0)
+	            swap(Max,Min);
+	        Max=std::max(arr[i],Max*arr[i]);
+	        Min=std::min(arr[i],Min*arr[i]);
+	        maxprod=std::max(maxprod,Max);
+	    }
+	    return maxprod;
+	}
