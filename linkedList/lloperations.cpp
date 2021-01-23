@@ -19,6 +19,7 @@ class linkedlist{
 		void display();
 		int Delete(int index);
 		int length();
+		void reverse();
 };
 linkedlist::linkedlist(int arr[],int n){
 	first=new node;
@@ -110,8 +111,28 @@ int linkedlist::length(){
 	return len;
 }
 
+void linkedlist::reverse(){
+	if(length()==1)
+		return;
+	node *p,*t,*m;
+	t=first;
+	m=t->next;
+	p=m->next;
+	t->next=NULL;
+	while(m){
+		
+		m->next=t;
+		t=m;
+		m=p;
+		if(p!=NULL)
+			p=p->next;
+	}
+	first=t;
+}
+
 int main(){
 	int a[3]={7,10,13};
+	cout<<"a"<<endl;
 	linkedlist ll(a,3); 
 	cout<<"inserting 6"<<endl;
 	ll.insert(1,6);
@@ -123,5 +144,11 @@ int main(){
 	ll.Delete(2);
 	ll.display();
 	cout<<endl<<"length = "<<ll.length()<<endl;
+	int arr[3]={2,6,8};
+	linkedlist l(arr,3);
+	l.display();
+	l.reverse();
+	cout<<"reverse done: ";
+	l.display();
 	return 0;
 }
