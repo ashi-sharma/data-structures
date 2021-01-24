@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
-
+//class node
 class node{
 	public:
 		int data;
 		node *next;
 };
-
+//class linked list
 class linkedlist{
 	public:
 		node *first;
@@ -20,7 +20,72 @@ class linkedlist{
 		int Delete(int index);
 		int length();
 		void reverse();
+		int issorted();
+		int s_insert(int num);
+		void remove_duplicate();
+		node* rec_reverse(node*p,node*t);
 };
+//recursive reverse of linkedlist
+node* rec_reverse(node*p,node*t){
+	if()
+}
+//remove duplicate nodes of linkedlist
+void linkedlist::remove_duplicate(){
+	node *p,*t;
+	t=first;
+	p=first->next;
+	while(p){
+		if(p->data==t->data){
+			t->next=p->next;
+			delete p;
+			p=t->next;
+		}
+		else{
+			t=p;
+			p=p->next;
+		}
+	}
+}
+//insert in a sorted linked list
+int linkedlist::s_insert(int num){
+	int index=0;
+	node *n = new node;
+	node *t, *p;
+	n->data=num;
+	n->next=NULL;
+	if(num<first->data){
+		n->next=first;
+		first=n;
+		return index;
+	}
+	index++;
+	t=first;
+	p=first->next;
+	while(p){
+		if(p->data > num){
+			n->next=p;
+			t->next=n;
+			return index;
+		}
+		index++;
+		t=p;
+		p=p->next;
+	}
+	t->next=n;
+	return index;
+}
+//Check if the linkedlist is sorted
+int linkedlist::issorted(){
+	node *p;
+	p=first;
+	while(p->next!=NULL){
+		if(p->data > (p->next)->data)
+			return -1;
+		p=p->next;
+	}
+	return 0;
+}
+//parameterized constructor
 linkedlist::linkedlist(int arr[],int n){
 	first=new node;
 	node *last,*t;
@@ -36,6 +101,7 @@ linkedlist::linkedlist(int arr[],int n){
 		t=last;
 	}
 }
+//Destructor
 linkedlist::~linkedlist(){
 	node *p;
 	p=first;
@@ -45,6 +111,7 @@ linkedlist::~linkedlist(){
 		p=first;
 	}
 }
+//insert at an index of linked list
 int linkedlist::insert(int index,int num){
 	node *n = new node;
 	int i=0;
@@ -68,7 +135,7 @@ int linkedlist::insert(int index,int num){
 		p=p->next;
 	}
 }
-
+//display all the elements of linked list
 void linkedlist::display(){
 	node *p;
 	p=first;
@@ -78,6 +145,7 @@ void linkedlist::display(){
 	}
 	cout<<endl;
 }
+//Delete a node at given index
 int linkedlist::Delete(int index){
 	node *p,*t;
 	int num;
@@ -101,6 +169,7 @@ int linkedlist::Delete(int index){
 		p=p->next;
 	}
 }
+//length of a linked list
 int linkedlist::length(){
 	node *p=first;
 	int len=0;
@@ -110,7 +179,7 @@ int linkedlist::length(){
 	}
 	return len;
 }
-
+//Reverse a linkedlist
 void linkedlist::reverse(){
 	if(length()==1)
 		return;
@@ -129,7 +198,7 @@ void linkedlist::reverse(){
 	}
 	first=t;
 }
-
+//Main function
 int main(){
 	int a[3]={7,10,13};
 	cout<<"a"<<endl;
@@ -144,11 +213,17 @@ int main(){
 	ll.Delete(2);
 	ll.display();
 	cout<<endl<<"length = "<<ll.length()<<endl;
-	int arr[3]={2,6,8};
-	linkedlist l(arr,3);
+	int arr[4]={8,6,2,2};
+	linkedlist l(arr,4);
 	l.display();
 	l.reverse();
 	cout<<"reverse done: ";
 	l.display();
+	cout<<l.issorted();
+	cout<<endl<<"7 inserted at index "<<l.s_insert(7)<<endl;
+	l.display();
+	l.remove_duplicate();
+	l.display();
+	l.rec_reverse(l.first->next,l.first)
 	return 0;
 }
