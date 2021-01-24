@@ -23,11 +23,21 @@ class linkedlist{
 		int issorted();
 		int s_insert(int num);
 		void remove_duplicate();
-		node* rec_reverse(node*p,node*t);
+		void rec_reverse(node*p,node*t);
+		void merge(node* second);
 };
+//merging two sorted linked lists
+void linkedlist::merge(node* second){
+	
+}
 //recursive reverse of linkedlist
-node* rec_reverse(node*p,node*t){
-	if()
+void linkedlist::rec_reverse(node*p,node*t){
+	if(p!=NULL){
+		rec_reverse(p->next,p);
+		p->next=t;
+	}
+	else
+		first=t;
 }
 //remove duplicate nodes of linkedlist
 void linkedlist::remove_duplicate(){
@@ -224,6 +234,8 @@ int main(){
 	l.display();
 	l.remove_duplicate();
 	l.display();
-	l.rec_reverse(l.first->next,l.first)
+	l.rec_reverse(l.first,NULL);
+	l.display();
+	l.merge(ll.first);
 	return 0;
 }
