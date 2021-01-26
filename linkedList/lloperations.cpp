@@ -24,11 +24,42 @@ class linkedlist{
 		int s_insert(int num);
 		void remove_duplicate();
 		void rec_reverse(node*p,node*t);
-		void merge(node* second);
+		node* merge(node* second);
 };
 //merging two sorted linked lists
-void linkedlist::merge(node* second){
-	
+node* linkedlist::merge(node* second){
+	node *third,*last;
+	if(first->data < last->data){
+		third=first;
+		last=first;
+		first=first->next;
+		last->next=NULL;
+	}
+	else{
+		third=second;
+		last=second;
+		second=second->next;
+		last->next=NULL;
+	}
+	while(first!=NULL && second!=NULL){
+		if(first->data < second->data){
+			last->next=first;
+			last=first;
+			first=first->next;
+			last->next=NULL;
+		}
+		else{
+			last->next=second;
+			last=second;
+			second=second->next;
+			last->next=NULL;
+		}
+	}
+	if(first!=NULL)
+		last->next=first;
+	else if(second!=NULL)
+		last->next=second;
+	return third;
 }
 //recursive reverse of linkedlist
 void linkedlist::rec_reverse(node*p,node*t){
@@ -210,7 +241,7 @@ void linkedlist::reverse(){
 }
 //Main function
 int main(){
-	int a[3]={7,10,13};
+	int a[3]={5,10,13};
 	cout<<"a"<<endl;
 	linkedlist ll(a,3); 
 	cout<<"inserting 6"<<endl;
@@ -223,7 +254,7 @@ int main(){
 	ll.Delete(2);
 	ll.display();
 	cout<<endl<<"length = "<<ll.length()<<endl;
-	int arr[4]={8,6,2,2};
+	int arr[4]={8,3,2,2};
 	linkedlist l(arr,4);
 	l.display();
 	l.reverse();
@@ -234,8 +265,9 @@ int main(){
 	l.display();
 	l.remove_duplicate();
 	l.display();
+	l.first=l.merge(ll.first);
+	l.display();
 	l.rec_reverse(l.first,NULL);
 	l.display();
-	l.merge(ll.first);
 	return 0;
 }
