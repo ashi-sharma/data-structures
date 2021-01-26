@@ -29,7 +29,7 @@ class linkedlist{
 };
 //Check for loop in linked list
 bool linkedlist::detectLoop(){
-    Node *fast,*slow,*head=first;
+    node *fast,*slow,*head=first;
     fast=head;slow=head;
    do{
         fast=(fast->next);
