@@ -25,7 +25,21 @@ class linkedlist{
 		void remove_duplicate();
 		void rec_reverse(node*p,node*t);
 		node* merge(node* second);
+		bool detectLoop();	
 };
+//Check for loop in linked list
+bool linkedlist::detectLoop(){
+    Node *fast,*slow,*head=first;
+    fast=head;slow=head;
+   do{
+        fast=(fast->next);
+        fast=fast!=NULL?fast->next:NULL;
+        slow=slow->next;
+        if(fast==slow)
+            return true;
+    } while(fast!=NULL && slow!=NULL);
+    return false;
+}
 //merging two sorted linked lists
 node* linkedlist::merge(node* second){
 	node *third,*last;
