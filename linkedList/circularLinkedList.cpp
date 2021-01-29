@@ -16,6 +16,7 @@ class circularlinkedlist{
 		~circularlinkedlist();
 		circularlinkedlist(int arr[],int n);
 		void display();
+		void insert(int num,int index);
 };
 //destructor
 circularlinkedlist::~circularlinkedlist(){
@@ -47,11 +48,35 @@ void circularlinkedlist::display(){
 		cout<<p->data<<" ";
 		p=p->next;
 	}while(p!=head);
+	cout<<endl;
+}
+//insert an element in circular linked list
+void circularlinkedlist::insert(int num,int index){
+	node *t=new node;
+	t->data=num;
+	node *p=head;
+	if(index==0){
+		t->next=head;
+		while(p->next!=head){
+			p=p->next;
+		}
+		p->next=t;
+		head=t;
+	}
+	node *q;
+	for(int i=0;i<index;i++){
+		q=p;
+		p=p->next;
+	}
+	q->next=t;
+	t->next=p;
 }
 //main function
 int main(){
 	int arr[5]={2,7,8,10,13};
 	circularlinkedlist cll(arr,5);
+	cll.display();
+	cll.insert(1,0);
 	cll.display();
 	return 0;
 	}
