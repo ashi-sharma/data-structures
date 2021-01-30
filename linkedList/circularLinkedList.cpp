@@ -17,7 +17,28 @@ class circularlinkedlist{
 		circularlinkedlist(int arr[],int n);
 		void display();
 		void insert(int num,int index);
+		void del(int index);
 };
+//to delete an element from circular linked list
+void circularlinkedlist::del(int index){
+	node*p,*t;
+	p=head;
+	if(index==0){
+		while(p->next!=head){
+			p=p->next;
+		}
+		p->next=head->next;
+		delete head;
+		head=p->next;
+		return ;
+	}
+	for(int i=0;i<index;i++){
+		t=p;
+		p=p->next;
+	}
+	t->next=p->next;
+	delete p;
+}
 //destructor
 circularlinkedlist::~circularlinkedlist(){
 	node *p=head;
@@ -62,6 +83,7 @@ void circularlinkedlist::insert(int num,int index){
 		}
 		p->next=t;
 		head=t;
+		return;
 	}
 	node *q;
 	for(int i=0;i<index;i++){
@@ -77,6 +99,8 @@ int main(){
 	circularlinkedlist cll(arr,5);
 	cll.display();
 	cll.insert(1,0);
+	cll.display();
+	cll.del(0);
 	cll.display();
 	return 0;
 	}
