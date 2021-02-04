@@ -20,7 +20,28 @@ class dlinkedlist{
 		void insert(int num,int index);
 };
 //insert an element at an index
-
+void dlinkedlist::insert(int num,int index){
+	node *t=new node;
+	t->data=num;
+	if(index==0){
+		t->prev=NULL;
+		t->next=first;
+		first->prev=t;
+		first=t;
+		return;
+	}
+	node*p=first->next;
+	int i=1;
+	while(index>i){
+		p=p->next;
+		i++;
+	}
+	t->next=p;
+	t->prev=p->prev;
+	p->prev->next=t;
+	p->prev=t;
+	
+}
 //display elements of doubly linked list
 void dlinkedlist::display(){
 	node *p=first;
@@ -59,6 +80,7 @@ int main(){
 	
 	int arr[5]={1,2,3,4,5};
 	dlinkedlist dll(arr,5);
+	dll.insert(9,5);
 	dll.display();
 	return 0;
 	
