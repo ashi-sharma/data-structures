@@ -63,6 +63,42 @@ void mergesort(int arr[],int l,int h){
 	}
 }
 
+//insertion sort
+void insertionSort(int arr[], int n){
+	cout<<"insertion sort"<<endl;
+	for(int i=1;i<n;i++){
+		int ele = arr[i];
+		for(int j=i-1;j>=0;j--){
+			if(arr[j]>ele){
+				arr[j+1]=arr[j];
+				arr[j] = ele;
+			}
+			else{
+				arr[j+1]=ele;
+				break;
+			}
+		}
+	}
+	display(arr,n);
+}
+
+//selection sort
+void selectionSort(int arr[], int n){
+	int i, j, k;
+	for( i=0;i<n;i++){
+		for( j=i, k=i;j<n;j++){
+			if(arr[k]>arr[j]){
+				k=j;
+			}
+		}
+		int temp = arr[i];
+		arr[i] = arr[k];
+		arr[k] = temp;
+	}
+	cout<<"selection sort"<<endl;
+	display(arr,n);
+}
+
 int main(){
 	int arr[5] = {4,6,2,1,3};
 	bubbleSort(arr,5);
